@@ -29,18 +29,20 @@
     // Configure the view for the selected state
 }
 -(void)initLayout{
-    self.selectionStyle = UITableViewCellSeparatorStyleNone;
-    
+    //self.selectionStyle = UITableViewCellSeparatorStyleNone;
+    for (UIView *subView in self.subviews) {
+        [subView removeFromSuperview];
+    }
     lblName  = [[UILabel alloc]init];
     [lblName setFrame:CGRectMake(45, 10, 300, 30)];
-    lblName.backgroundColor = UIColor.redColor;
+ //   lblName.backgroundColor = UIColor.redColor;
     
     lblScore = [[UILabel alloc]init];
     [lblScore setFrame:CGRectMake(45 ,45, 120, 40)];
-    lblScore.backgroundColor = UIColor.blueColor;
+ //   lblScore.backgroundColor = UIColor.blueColor;
     
     image = [[UIImageView alloc]init];
-    image.backgroundColor = UIColor.purpleColor;
+    image.image = [UIImage imageNamed:@"star1"];
     [image setFrame:CGRectMake(10, 10, 30, 30)];
     
     [self addSubview:lblName];
@@ -49,13 +51,11 @@
 }
 -(void)setData:(ClassStudent *)student type:(int)type{
     lblName.text =[NSString stringWithFormat:@"%@ %@",student.firstName,student.lastName];
-    
     switch (type) {
-        case 1:
-            image.image = [UIImage imageNamed:@""];
+        case 0:
             lblScore.text = [NSString stringWithFormat:@"TOAN :%f",student.mathScore];
             break;
-            case 2:
+            case 1:
             lblScore.text = [NSString stringWithFormat:@"LY :%f",student.physicScore];
             break;
         default:
